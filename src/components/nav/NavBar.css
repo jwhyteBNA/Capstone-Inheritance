@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+    background-color: rgb(161, 236, 158);
+    border: 1px dotted rgb(74, 198, 21);
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+}
+
+.navbar__item {
+    flex-basis: 20%;
+    list-style-type: none;
+}
+
+
+.navbar__logout {
+    margin-left: auto;
+}
