@@ -88,7 +88,23 @@ export const deleteTreasure = (treasureObject) => {
     })
 }
 
-export const TreasureDetail = (treasureObjectId) => {
-    return fetch(`http://localhost:8088/treasures?&_embed=assignedTreasures&_embed=treasureMementos&treasureId=${treasureObjectId}`)
+export const treasureDetail = (treasureId) => {
+    return fetch(`http://localhost:8088/treasures?&id=${treasureId}&_embed=treasureMemories`)
         .then(response => response.json())
+}
+
+export const getTreasureMemories= (treasureId) => {
+    return fetch(`http://localhost:8088/treasureMemories?&_expand=user&treasureId=${treasureId}`)
+        .then(response => response.json())
+}
+
+export const createMemory = (memoryToSendToAPI) => {
+    return fetch (`http://localhost:8088/treasureMemories`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(memoryToSendToAPI)
+})
+.then(response => response.json())
 }
