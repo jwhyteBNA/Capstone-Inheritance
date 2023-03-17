@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getReservedTreasures, listTreasures } from "../ApiManager";
+import { listTreasures } from "../ApiManager";
 import { Treasure } from "./Treasure";
 import "./treasures.css";
 
-export const TreasureList = ({ searchTermState }) => {
+export const TreasureList = ({ searchTermState, filteredValueState, filteredAssignmentState }) => {
   const [treasures, setTreasures] = useState([]);
   const [filteredTreasures, setFiltered] = useState([]);
   const navigate = useNavigate();
@@ -36,6 +36,27 @@ export const TreasureList = ({ searchTermState }) => {
     });
     setFiltered(searchedTreasures);
   }, [searchTermState]);
+
+useEffect(() => {
+  let filteredTreasureByType = treasures
+  if (filteredValueState) {
+    filteredTreasureByType = treasures.filter((treasure) => treasure.treasureTypeId === parseInt(filteredValueState))
+  }
+  setFiltered(filteredTreasureByType)
+},
+[filteredValueState]
+)
+
+//not yet working properly - need to figure out if I can filter by assigned users given current fetch call
+useEffect(() => {
+  let filteredTreasureByAssignment = treasures
+  if (filteredAssignmentState) {
+    filteredTreasureByAssignment = treasures.filter((treasure) => treasure?.assignedTreasures?.userId === parseInt(filteredAssignmentState))
+  }
+  setFiltered(filteredTreasureByAssignment)
+},
+[filteredAssignmentState]
+)
 
   const getAllTreasures = () => {
     listTreasures().then((treasureArray) => {
@@ -85,7 +106,7 @@ export const TreasureList = ({ searchTermState }) => {
       <article className="treasures">
         {filteredTreasures.map((treasure) => (
           <Treasure
-            key={treasure.id}
+            key={`treasure --${treasure.id}`}
             getAllTreasures={getAllTreasures}
             treasureObject={treasure}
           />

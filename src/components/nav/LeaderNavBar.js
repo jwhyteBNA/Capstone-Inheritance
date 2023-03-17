@@ -15,10 +15,7 @@ export const LeaderNavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar_requests" to="/requests">Requests</Link>
              </li>
-             <li className="navbar__item">
-                <Link className="navbar_profile" to="/profile">Profile</Link>
-             </li>
-           <li className="navbar__item navbar__logout">
+             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {
                     localStorage.removeItem("family_user")
                     navigate("/", {replace: true})

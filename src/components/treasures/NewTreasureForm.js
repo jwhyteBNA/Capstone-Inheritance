@@ -162,6 +162,7 @@ const [assignedTreasure, setAssigned] = useState({
           </select>
         </div>
       </fieldset>
+      {familyUserObject.leader? (
       <fieldset>
         <div className="form-group">
           <label htmlFor="heir">Assigned Heir:</label>
@@ -183,6 +184,9 @@ const [assignedTreasure, setAssigned] = useState({
           </select>
         </div>
       </fieldset>
+      ) : (
+        ""
+      )}
       <button
         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
         className="btn btn-primary"

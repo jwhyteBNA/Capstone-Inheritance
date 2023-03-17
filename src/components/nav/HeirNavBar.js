@@ -10,6 +10,9 @@ export const HeirNavBar = () => {
                 <Link className="navbar_home" to="/">Home</Link>
             </li>
             <li className="navbar__item"> 
+                <Link className="navbar_about" to="/">About Inheritance</Link>
+            </li>
+            <li className="navbar__item"> 
                 <Link className="navbar_treasures" to="/treasure">Treasures</Link>
             </li>
             <li className="navbar__item">
