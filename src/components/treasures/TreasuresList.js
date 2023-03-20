@@ -108,6 +108,7 @@ useEffect(() => {
           <Treasure
             key={`treasure --${treasure.id}`}
             getAllTreasures={getAllTreasures}
+            currentUser={familyUserObject}
             treasureObject={treasure}
           />
         ))}

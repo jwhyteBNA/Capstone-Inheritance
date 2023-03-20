@@ -3,6 +3,7 @@ import { getHeirProfile, updateHeirProfile } from "../ApiManager";
 
 export const HeirProfile = () => {
     const[profile, updateProfile] = useState({
+     email: "",
      address: "",
      phoneNumber:"",
     })
@@ -42,11 +43,26 @@ updateHeirProfile(profile)
 
     return (
         <article>
-        <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
+        <div id="feedback_profile" className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
     {feedback}
 </div>
         <form className="profile">
             <h2 className="profile__title">Profile Contact Information</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="email">Email Address:</label>
+                    <input type="text"
+                        className="form-control"
+                        value={profile.email}
+                        onChange={
+                            (evt) => {
+                                const copy = {...profile}
+                                copy.email = evt.target.value
+                                updateProfile(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="address">Address:</label>
@@ -66,7 +82,7 @@ updateHeirProfile(profile)
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Phone Number:</label>
+                    <label htmlFor="phoneNumber">Phone Number:</label>
                     <input type="text"
                         className="form-control"
                         value={profile.phoneNumber}

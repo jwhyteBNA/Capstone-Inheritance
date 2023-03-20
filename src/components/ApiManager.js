@@ -35,12 +35,12 @@ export const treasuresByType = () => {
 }
 
 export const getHeirProfile = (familyUserObject) => {
-    return fetch(`http://localhost:8088/heirs?userId=${familyUserObject.id}`)
+    return fetch(`http://localhost:8088/users?id=${familyUserObject.id}`)
     .then(response => response.json())
 }
 
 export const updateHeirProfile = (profile) => {
-    return fetch (`http://localhost:8088/heirs/${profile.id}`, {
+    return fetch (`http://localhost:8088/users/${profile.id}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json"
@@ -89,7 +89,7 @@ export const deleteTreasure = (treasureObject) => {
 }
 
 export const treasureDetail = (treasureId) => {
-    return fetch(`http://localhost:8088/treasures?&id=${treasureId}&_embed=treasureMemories`)
+    return fetch(`http://localhost:8088/treasures?&id=${treasureId}&_embed=treasureMemories&embed=assignedTreasure`)
         .then(response => response.json())
 }
 
@@ -107,4 +107,36 @@ export const createMemory = (memoryToSendToAPI) => {
     body: JSON.stringify(memoryToSendToAPI)
 })
 .then(response => response.json())
+}
+
+export const getAllUsers= () => {
+    return fetch(`http://localhost:8088/users?_sort=isLeader`)
+        .then(response => response.json())
+}
+
+export const updateUserDetail = (userId) => {
+    return fetch(`http://localhost:8088/users?&id=${userId}`)
+      .then((response) => response.json())
+}
+
+export const getUsers = (userId) => { 
+    return fetch(`http://localhost:8088/users?&id=${userId}`)
+      .then((response) => response.json())
+}
+
+export const updateUserProfile = (profile) => {
+    return fetch(`http://localhost:8088/users/${profile.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    })
+      .then((response) => response.json())
+}
+
+export const deleteUser = (userId) => {
+    return fetch(`http://localhost:8088/users/${userId}`, {
+        method: "DELETE"
+    })
 }

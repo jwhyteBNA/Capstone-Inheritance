@@ -1,0 +1,30 @@
+.familyMembers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.profile {
+    width: 30%;
+    background-color: rgb(114, 219, 235);
+    border: 2px dotted rgb(216, 51, 147);
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+}
+
+.profilePhoto{
+    width: 150px;
+    border-radius: 50%;
+}
+
+.customer_footer {
+    margin: 1rem 0 0.25rem 0;
+    font-style: oblique;
+}
+
+.customer_header {
+    font-size: larger;
+    font-weight: 700;
+    line-height: 3rem;
+}
