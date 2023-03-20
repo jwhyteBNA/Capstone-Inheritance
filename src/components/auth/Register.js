@@ -8,7 +8,9 @@ export const Register = (props) => {
         fullName: "",
         email: "",
         password: "",
-        photo:"",
+        photo: "",
+        phoneNumber: "None Available",
+        address: "None Available",
         isLeader: false,
         isExecutor: false
     })
@@ -81,6 +83,22 @@ export const Register = (props) => {
                         id="photo" 
                         className="form-control"
                         placeholder="Profile Photo Link" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="phoneNumber"> Phone Number </label>
+                    <input onChange={updateUser}
+                        type="text" 
+                        id="phoneNumber" 
+                        className="form-control"
+                        placeholder="Phone Number" />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="address"> Address </label>
+                    <input onChange={updateUser}
+                        type="text" 
+                        id="address" 
+                        className="form-control"
+                        placeholder="Address"/>
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Register </button>
