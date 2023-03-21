@@ -38,6 +38,8 @@ const [assignedTreasure, setAssigned] = useState({
     const assignedTreasureToSendToAPI = {
       userId: parseInt(familyUserObject.id),
       dateAssigned: Date.now(),
+      itemReviewed: true,
+      itemApproval: "approved"
     };
 
     createTreasureItem(treasureToSendToAPI)

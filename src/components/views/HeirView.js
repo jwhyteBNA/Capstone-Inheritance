@@ -4,6 +4,7 @@ import { NewMemoryForm } from "../memories/Memory Form";
 import { HeirProfile } from "../profile/HeirProfile";
 import { ProfileDetails } from "../profile/ProfileDetail";
 import { UserProfileList } from "../profile/ProfileList";
+import { RequestList } from "../requests/HeirRequestList";
 import { NewTreasureForm } from "../treasures/NewTreasureForm";
 import { TreasureContainer } from "../treasures/TreasureContainer";
 import { TreasureDetails } from "../treasures/TreasureDetail";
@@ -32,6 +33,8 @@ export const HeirViews = () => {
           path="treasure/:treasureId/createMemory"
           element={<NewMemoryForm />}
         />
+        
+        <Route path="requests" element={<RequestList />} />
         <Route path="profile" element={<HeirProfile />} />
       </Route>
     </Routes>

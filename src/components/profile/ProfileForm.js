@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteUser, getUsers, updateUserProfile } from "../ApiManager";
+import { deleteUser, updateUserDetail, updateUserProfile } from "../ApiManager";
 
 export const UserForm = () => {
   const { userId } = useParams();
@@ -19,7 +19,7 @@ export const UserForm = () => {
   }, [feedback]);
 
   useEffect(() => {
-    getUsers(userId)
+    updateUserDetail(userId)
       .then((data) => {
         const singleProfile = data[0];
         updateProfile(singleProfile);
@@ -43,7 +43,10 @@ export const UserForm = () => {
 
     updateUserProfile(profile)
       .then(() => {
-        setFeedback("Profile Information successfully updated");
+        window.alert("Profile Information successfully updated")
+      })
+      .then(() => {
+        navigate("/")
       })
   };
   return (

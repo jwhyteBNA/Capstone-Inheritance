@@ -9,6 +9,7 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
   const [filteredTreasures, setFiltered] = useState([]);
   const navigate = useNavigate();
   const [reservedByHeir, setReserved] = useState(false);
+  const [availableToRequest, setAvailable] = useState(false)
 
   const localFamilyUser = localStorage.getItem("family_user");
   const familyUserObject = JSON.parse(localFamilyUser);
@@ -16,14 +17,28 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
   useEffect(() => {
     if (reservedByHeir) {
       const reservedTreasures = treasures.filter(
-        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => assignedTreasure.userId === familyUserObject.id)
-      );
+        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.userId === familyUserObject.id) &&(assignedTreasure.itemApproval === "approved"))
+      )
       setFiltered(reservedTreasures);
     }
     else {
       setFiltered(treasures)
     }
   }, [reservedByHeir]);
+
+
+  //TODO: Filter by all not yet claimed treasures
+  useEffect(() => {
+    if (availableToRequest) {
+      const availableTreasures = treasures.filter(
+        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.userId === familyUserObject.id))
+      );
+      setFiltered(availableTreasures);
+    }
+    else {
+      setFiltered(treasures)
+    }
+  }, [availableToRequest]);
 
   useEffect(() => {
     const searchedTreasures = treasures.filter((treasure) => {
@@ -47,12 +62,11 @@ useEffect(() => {
 [filteredValueState]
 )
 
-//not yet working properly - need to figure out if I can filter by assigned users given current fetch call
 useEffect(() => {
   let filteredTreasureByAssignment = treasures
   if (filteredAssignmentState) {
-    filteredTreasureByAssignment = treasures.filter((treasure) => treasure?.assignedTreasures?.userId === parseInt(filteredAssignmentState))
-  }
+    filteredTreasureByAssignment = treasures.filter((treasure) => treasure.assignedTreasures.find((assignedTreasure) => assignedTreasure.userId === parseInt(filteredAssignmentState))
+)}
   setFiltered(filteredTreasureByAssignment)
 },
 [filteredAssignmentState]
@@ -94,6 +108,9 @@ useEffect(() => {
           >
             My Treasures
           </button>
+          <button onClick={() => {
+            setAvailable(true)
+          }}>Not Yet Claimed</button>
         </>
       )}
 

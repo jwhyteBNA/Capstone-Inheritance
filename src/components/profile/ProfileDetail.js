@@ -24,7 +24,12 @@ useEffect(
     <header className="member_header">{user?.fullName}</header>
     <div>Email: {user?.email}</div>
     <div>Phone Number: {user?.phoneNumber}</div>
-    {familyUserObject.leader ? (<div><UserForm/></div>) : ("")}
+    
+    {familyUserObject.leader ? 
+    (<>
+    <div>User Leader? {String(user?.isLeader)}</div>
+    <div>User Executor? {String(user?.isExecutor)}</div>
+    <div><UserForm/></div></>) : ("")}
     </section>
    
 }

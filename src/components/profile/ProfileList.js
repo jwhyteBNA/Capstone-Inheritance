@@ -1,31 +1,73 @@
-//TODO: add list of all users and show their names and photos
-//ToDo: when clicking on user, take the admin to thier profile to make edits and change them from a user to admin, user to executor, and edit their details.
-
 import { useEffect, useState } from "react"
-import { getAllUsers } from "../ApiManager"
+import { getExecutorUsers, getHeirUsers, getLeaderUsers } from "../ApiManager"
 import { UserProfile } from "./Profile"
 import "./profile.css"
 
 export const UserProfileList = () => {
- const [users, setUsers] = useState([])
+ const [heirUsers, setHeirUsers] = useState([])
+ const [leaderUsers, setLeaderUsers] = useState([])
+ const [executorUsers, setExecUsers] = useState([])
+ const localFamilyUser = localStorage.getItem("family_user");
+const familyUserObject = JSON.parse(localFamilyUser);
+
 
  useEffect(
     () => {
-        getAllUsers()
+        getHeirUsers()
         .then((userArray) => {
-            setUsers(userArray)
+            setHeirUsers(userArray)
         })
     }, []
  )
 
- return <article className="familyMembers">
+ useEffect(
+    () => {
+        getLeaderUsers()
+        .then((userArray) => {
+            setLeaderUsers(userArray)
+        })
+    }, []
+ )
+
+ useEffect(
+    () => {
+        getExecutorUsers()
+        .then((userArray) => {
+            setExecUsers(userArray)
+        })
+    }, []
+ )
+
+ return <article className="familyList">
     <h2>Family List</h2>
-    {users.map(user => <UserProfile key={`user--${user.id}`}
+    <h3>Family Leaders</h3>
+    <article className="familyMembers">
+    {leaderUsers.map(user => <UserProfile key={`user--${user.id}`}
     id={user.id}
     fullName={user.fullName}
     photo={user.photo}
     />)
     }
+    </article>
+    <h3>Family Members</h3>
+    <article className="familyMembers">
+    {heirUsers.map(user => <UserProfile key={`user--${user.id}`}
+    id={user.id}
+    fullName={user.fullName}
+    photo={user.photo}
+    />)
+    }
+    </article>
+     {familyUserObject.leader ? 
+    (<>
+    <h3>Executors</h3>
+    <article className="familyMembers">
+    {executorUsers.map(user => <UserProfile key={`user--${user.id}`}
+    id={user.id}
+    fullName={user.fullName}
+    photo={user.photo}
+    />)}</article></>) : ("")}
+    
  </article>
 
 }
