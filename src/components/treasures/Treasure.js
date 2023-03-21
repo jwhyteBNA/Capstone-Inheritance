@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom";
-import { deleteTreasure } from "../ApiManager";
+import { createTreasureRequest, deleteTreasure } from "../ApiManager";
 
-export const Treasure = ({ treasureObject, getAllTreasures,
+export const Treasure = ({ treasureObject, getAllTreasures, currentUser
 }) => {
 
-const localFamilyUser = localStorage.getItem("family_user")
-const familyUserObject = JSON.parse(localFamilyUser)
+const requestButton = () => {
+  if (currentUser.leader) {
+    return ""
+  } else {
+      return (
+      <button
+      className="btn btn-request"
+      onClick={() => {
+        createTreasureRequest(currentUser, treasureObject)
+      .then(() => {
+        getAllTreasures()
+    })
+  }}
+  >
+    Request
+    </button>
+  )}}
 
   const deleteButton = () => {
-    if (familyUserObject.leader) {
+    if (currentUser.leader) {
       return (
         <button
           onClick={() => {
@@ -16,7 +31,7 @@ const familyUserObject = JSON.parse(localFamilyUser)
               getAllTreasures()
             })
     }}   
-          className="treasure__delete"
+          className="btn btn__deleteTreasure"
         >
           {" "}
           Delete Treasure
@@ -33,6 +48,7 @@ const familyUserObject = JSON.parse(localFamilyUser)
       <span>{treasureObject?.treasureType?.name}</span>
       <footer className="treasure__footer">
        {deleteButton()}
+       {treasureObject.id===treasureObject.assignedTreasures?.treasureId ? ("") : (requestButton())}
       </footer>
     </section>
 };

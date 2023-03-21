@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getTreasureMemories, treasureDetail } from "../ApiManager";
 import "./treasures.css";
 
@@ -7,7 +7,6 @@ export const TreasureDetails = () => {
   const { treasureId } = useParams();
   const [treasure, updateTreasure] = useState({});
   const [treasureMemories, setMemories] = useState([]);
-  const navigate = useNavigate()
 
   useEffect(() => {
     treasureDetail(treasureId).then((data) => {
@@ -21,7 +20,7 @@ export const TreasureDetails = () => {
     })
   }, [treasureId]);
 
-  return (
+  return ( 
   <section className="treasure_details">
       <img className="treasure_img" src={treasure.photoLink} />
       <header className="treasure_header">{treasure.name}</header>
