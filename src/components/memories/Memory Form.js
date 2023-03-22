@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { MemoryRouter, useNavigate, useParams } from "react-router-dom";
 import { createMemory } from "../ApiManager";
 
 export const NewMemoryForm = () => {
@@ -11,7 +11,7 @@ export const NewMemoryForm = () => {
     description: "",
   });
 
-  const memoryTreasureId = treasureId
+  const memoryTreasureId = treasureId;
   const localFamilyUser = localStorage.getItem("family_user");
   const familyUserObject = JSON.parse(localFamilyUser);
 
@@ -22,12 +22,13 @@ export const NewMemoryForm = () => {
       userId: parseInt(familyUserObject.id),
       treasureId: parseInt(memoryTreasureId),
       description: memory.description,
+      videoLink: memory.videoLink,
+      photoLink: memory.photo
     };
 
-     createMemory(memoryToSendToAPI)
-    .then(() => {
+    createMemory(memoryToSendToAPI).then(() => {
       navigate(`/treasure/${treasureId}`);
-    })
+    });
   };
 
   return (
@@ -37,7 +38,6 @@ export const NewMemoryForm = () => {
         <div className="form-group">
           <label htmlFor="description">Memory Description:</label>
           <textarea
-            required
             autoFocus
             type="text"
             className="form-control"
@@ -50,6 +50,36 @@ export const NewMemoryForm = () => {
             }}
           />
         </div>
+      </fieldset>
+      <fieldset>
+        <label htmlFor="video"> Video Link </label>
+        <input
+          type="url"
+          id="video"
+          className="form-control"
+          placeholder="Optional Video Link"
+          value={memory.videoLink}
+          onChange={(event) => {
+            const copy = { ...memory };
+            copy.videoLink = event.target.value;
+            setMemory(copy);
+          }}
+        />
+      </fieldset>
+      <fieldset>
+        <label htmlFor="photo"> Photo Link </label>
+        <input
+          type="text"
+          id="photo"
+          className="form-control"
+          placeholder="Optional Photo Link"
+          value={memory.photo}
+          onChange={(event) => {
+            const copy = { ...memory };
+            copy.photo = event.target.value;
+            setMemory(copy);
+          }}
+        />
       </fieldset>
       <button
         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}

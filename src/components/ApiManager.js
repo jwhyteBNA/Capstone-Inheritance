@@ -101,6 +101,17 @@ export const createTreasureItem = (treasureToSendToAPI) => {
 .then(response => response.json())
 }
 
+export const createTreasureRequestNew = (requestedTreasureToSendToAPI) => {
+    return fetch (`http://localhost:8088/assignedTreasures`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(requestedTreasureToSendToAPI)
+})
+.then(response => response.json())
+}
+
 //AssignedTreasureByAdmin
 export const createAssignedTreasure = (assignedTreasureToSendToAPI) => {
     return fetch (`http://localhost:8088/assignedTreasures`, {
@@ -123,9 +134,9 @@ export const createTreasureRequest = (currentUser, treasureObject) => {
     body: JSON.stringify({
         userId: parseInt(currentUser.id),
         treasureId: parseInt(treasureObject.id),
-        dateAssigned: Date.now(),
-        itemReviewed: "",
-        itemApproval: "pending"
+        dateRequested: new Date(),
+        dateReviewed: "",
+        itemApproval: "Pending"
     })
 })
 .then(response => response.json())
@@ -161,7 +172,25 @@ export const createMemory = (memoryToSendToAPI) => {
 }
 
 //Requests
-export const listRequestsByUser = () => {
+export const listRequestsByTreasure = () => {
     return fetch("http://localhost:8088/assignedTreasures?&_sort=treasureId&_expand=treasure")
     .then((response) => response.json())
 }
+
+export const deleteTreasureRequest = (treasureRequest) => {
+    return fetch(`http://localhost:8088/assignedTreasures/${treasureRequest.id}`, {
+        method: "DELETE"
+    })
+}
+
+export const respondTreasureRequest = (requestObject, copy) => {
+    return fetch(`http://localhost:8088/assignedTreasures/${requestObject.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(copy),
+      })
+        .then((response) => response.json())
+  }
+  

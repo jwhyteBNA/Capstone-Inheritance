@@ -27,8 +27,8 @@ useEffect(
     
     {familyUserObject.leader ? 
     (<>
-    <div>User Leader? {String(user?.isLeader)}</div>
-    <div>User Executor? {String(user?.isExecutor)}</div>
+    <div>Leader? {(user?.isLeader) ? "✅" : "🚫"}</div>
+    <div>Executor? {(user?.isExecutor) ? "✅" : "🚫"}</div>
     <div><UserForm/></div></>) : ("")}
     </section>
    
