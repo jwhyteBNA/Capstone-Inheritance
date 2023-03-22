@@ -17,7 +17,7 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
   useEffect(() => {
     if (reservedByHeir) {
       const reservedTreasures = treasures.filter(
-        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.userId === familyUserObject.id) &&(assignedTreasure.itemApproval === "approved"))
+        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.userId === familyUserObject.id) && (assignedTreasure.itemApproval === "Approved"))
       )
       setFiltered(reservedTreasures);
     }
@@ -26,12 +26,11 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
     }
   }, [reservedByHeir]);
 
-
   //TODO: Filter by all not yet claimed treasures
   useEffect(() => {
     if (availableToRequest) {
       const availableTreasures = treasures.filter(
-        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.userId === familyUserObject.id))
+        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.itemApproval === "Pending"))
       );
       setFiltered(availableTreasures);
     }

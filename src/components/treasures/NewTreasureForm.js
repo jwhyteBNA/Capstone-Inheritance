@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createAssignedTreasure, createTreasureItem, getAllTreasureTypes, getHeirUsers } from "../ApiManager";
@@ -17,7 +18,9 @@ export const NewTreasureForm = () => {
 const [assignedTreasure, setAssigned] = useState({
   userId: "",
   treasureId: "",
-  dateAssigned: "",
+  dateRequested:"",
+  dateReviewed: Date.now(),
+  itemApproval: "Approved"
 })
 
   const localFamilyUser = localStorage.getItem("family_user");
@@ -37,15 +40,44 @@ const [assignedTreasure, setAssigned] = useState({
 
     const assignedTreasureToSendToAPI = {
       userId: parseInt(familyUserObject.id),
-      dateAssigned: Date.now(),
-      itemReviewed: true,
-      itemApproval: "approved"
+      dateRequested: "",
+      dateReviewed: Date.now(),
+      itemApproval: "Approved"
     };
 
     createTreasureItem(treasureToSendToAPI)
     .then((treasure) => {
       assignedTreasureToSendToAPI.treasureId = treasure.id
       return createAssignedTreasure(assignedTreasureToSendToAPI)
+    })
+    .then(() => {
+      navigate("/treasure");
+    })
+  };
+
+  const handleHeirSaveButtonClick = (event) => {
+    event.preventDefault();
+
+    const treasureToSendToAPI = {
+      userId: parseInt(familyUserObject.id),
+      name: treasure.name,
+      description: treasure.description,
+      treasureTypeId: parseInt(treasure.treasureTypeId),
+      photoLink: treasure.photoLink,
+      valuation: parseFloat(treasure.valuation),
+    };
+
+    const requestedTreasureToSendToAPI = {
+      userId: parseInt(familyUserObject.id),
+      dateRequested: Date.now(),
+      dateReviewed: "",
+      itemApproval: "Pending"
+    };
+
+    createTreasureItem(treasureToSendToAPI)
+    .then((treasure) => {
+      requestedTreasureToSendToAPI.treasureId = treasure.id
+      return createAssignedTreasure(requestedTreasureToSendToAPI)
     })
     .then(() => {
       navigate("/treasure");
@@ -187,13 +219,14 @@ const [assignedTreasure, setAssigned] = useState({
         </div>
       </fieldset>
       ) : (
-        ""
+        <button
+        onClick={(clickEvent) => handleHeirSaveButtonClick(clickEvent) } className="btn btn__request">Submit AND Request Treasure</button>
       )}
       <button
         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
         className="btn btn-primary"
       >
-        Submit treasure
+        Submit Treasure
       </button>
     </form>
   );

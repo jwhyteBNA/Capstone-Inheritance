@@ -29,7 +29,9 @@ export const TreasureDetails = () => {
       <div>Memories:</div>
       <ul>
      {treasureMemories.map(memory => (
-        <li key={memory?.id}><p>"{memory?.description}"<br/>from {memory?.user?.fullName}</p></li>
+        <li key={memory?.id}><p>"{memory?.description}"<br/>from {memory?.user?.fullName}</p>
+        {memory?.photo ? <img src= {memory.photo}/> : ""}
+        {memory?.videoLink ? <iframe width="560" height="315" src={memory.videoLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> : ""} </li>
       ))}
       </ul>
       <Link to={`/treasure/${treasure.id}/createMemory`}>Have A Memory to Add?</Link>

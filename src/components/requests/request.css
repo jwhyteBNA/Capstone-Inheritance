@@ -1,0 +1,25 @@
+.request {
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    width: 200px;
+    align-content: center;
+    border: 6px dashed navy;
+    background-color:rgb(134, 199, 106); 
+    border: 1px dotted rgb(140, 176, 233);
+}
+
+.requests {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+    padding: 0.7rem;
+    margin: 1rem;
+}
+
+.request__delete {
+    margin-left: auto;
+}
