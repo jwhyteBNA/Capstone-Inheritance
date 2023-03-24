@@ -27,14 +27,14 @@ export const RequestList = () => {
     setFiltered(filteredRequests)
     } else {
     const filteredRequests = requests.filter(
-            (request) => request.userId === familyUserObject.id
+            (request) => request.userId === familyUserObject.id && request.itemApproval === "Pending"
         ); 
         setFiltered(filteredRequests)
     };
   }, [requests]);
 
   return <article>
-  <h2>My Requests</h2>
+  <h2>Pending Requests</h2>
   <section className="requests">
   {filteredRequests.map(
       (request) => <Request key={`request --${request.id}`}

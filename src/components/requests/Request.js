@@ -1,4 +1,4 @@
-import { deleteTreasureRequest, respondTreasureRequest } from "../ApiManager";
+import { deleteTreasureRequest, listPendingRequests, respondTreasureRequest } from "../ApiManager";
 
 export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
 
@@ -42,10 +42,14 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
           userId: requestObject.userId,
           treasureId: requestObject.treasureId,
           dateRequested: requestObject.dateRequested,
-          dateReviewed: new Date(),
+          dateReviewed: Date.now(),
           itemApproval: "Approved",
         };
-        respondTreasureRequest(requestObject, copy).then(listOpenRequests());
+        respondTreasureRequest(requestObject, copy)
+        .then(() => {
+            listOpenRequests()
+            listPendingRequests()
+        })
       };
     
       const closeRequestNo = () => {
@@ -53,12 +57,13 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
           userId: requestObject.userId,
           treasureId: requestObject.treasureId,
           dateRequested: requestObject.dateRequested,
-          dateReviewed: new Date(),
+          dateReviewed: Date.now(),
           itemApproval: "Denied",
         };
         respondTreasureRequest(requestObject, copy)
         .then(() => {
             listOpenRequests()
+            listPendingRequests()
         })
       };
 
@@ -66,8 +71,7 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
     <section className="request" key={`request--${requestObject.id}`}>
             <div>{requestObject.treasure.name}</div>
             <img className="request__img" src={requestObject.treasure.photoLink}/>
-            <div>Date Requested: {requestObject.dateRequested*1000}.toLocaleDateString()</div>
-            <div>Item Status: {requestObject.itemApproval}</div>
+            <div>Date Requested: {new Date(requestObject.dateRequested).getMonth()}/{new Date(requestObject.dateRequested).getDate()}/{new Date(requestObject.dateRequested).getFullYear()}</div>
             {currentUser.leader ? (<>
             <div>{confirmRequest()}</div> 
             <div>{denyRequest()}</div>

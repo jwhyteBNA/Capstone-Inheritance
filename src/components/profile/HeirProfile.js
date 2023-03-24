@@ -6,6 +6,7 @@ export const HeirProfile = () => {
      email: "",
      address: "",
      phoneNumber:"",
+     photo:""
     })
 
     const localFamilyUser = localStorage.getItem("family_user");
@@ -90,6 +91,21 @@ updateHeirProfile(profile)
                             (evt) => {
                                 const copy = {...profile}
                                 copy.phoneNumber = evt.target.value
+                                updateProfile(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="email">Profile Photo:</label>
+                    <input type="text"
+                        className="form-control"
+                        value={profile.photo}
+                        onChange={
+                            (evt) => {
+                                const copy = {...profile}
+                                copy.photo = evt.target.value
                                 updateProfile(copy)
                             }
                         } />

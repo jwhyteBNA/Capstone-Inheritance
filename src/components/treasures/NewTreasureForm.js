@@ -177,25 +177,28 @@ const [assignedTreasure, setAssigned] = useState({
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
-          <label htmlFor="treasureType">Treasure Type:</label>
-          <select
-            value={treasure.treasureTypeId}
-            onChange={(event) => {
-              const copy = { ...treasure };
-              copy.treasureTypeId = event.target.value;
-              setTreasure(copy);
-            }}
-          >
-            <option value="">Select A Treasure Type</option>
-            {treasureTypes.map((treasureType) => (
-              <option key={treasureType.id} value={treasureType.id}>
-                {treasureType.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </fieldset>
+  <div className="form-group">
+    <label htmlFor="treasure-type">Treasure Type:</label>
+    {treasureTypes.map((treasureType) => (
+      <div key={treasureType.id}>
+        <input
+          type="radio"
+          id={`treasureType-${treasureType.id}`}
+          name="treasureType"
+          value={treasureType.id}
+          onChange={(event) => {
+            const copy = { ...treasure };
+            copy.treasureTypeId = event.target.value;
+            setTreasure(copy);
+          }}
+        />
+        <label htmlFor={`treasureType-${treasureType.id}`}>
+          {treasureType.name}
+        </label>
+      </div>
+    ))}
+  </div>
+</fieldset>
       {familyUserObject.leader? (
       <fieldset>
         <div className="form-group">

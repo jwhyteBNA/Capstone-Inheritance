@@ -30,7 +30,9 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
   useEffect(() => {
     if (availableToRequest) {
       const availableTreasures = treasures.filter(
-        (treasure) => treasure.assignedTreasures.find((assignedTreasure) => (assignedTreasure.itemApproval === "Pending"))
+        (treasure) => !treasure.assignedTreasures.some((assignedTreasure) => {
+          return assignedTreasure.userId === familyUserObject.id || assignedTreasure.itemApproval === "Approved"
+              }) 
       );
       setFiltered(availableTreasures);
     }
@@ -95,7 +97,8 @@ useEffect(() => {
         <>
           <button
             onClick={() => {
-              setReserved(false);
+              setReserved(false)
+              setAvailable(false);
             }}
           >
             All Treasures

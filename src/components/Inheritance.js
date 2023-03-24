@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom"
+import { Routes } from "react-router-dom"
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import { Authorized } from "./views/Authorized"
 import { ApplicationViews } from "./views/ApplicationViews"
 import { NavBar } from "./nav/NavBar"
@@ -9,6 +10,7 @@ import "./Inheritance.css"
 
 export const Inheritance = () => {
 	return <Routes>
+		
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<Register />} />
 
@@ -24,3 +26,4 @@ export const Inheritance = () => {
 		} />
 	</Routes>
 }
+
