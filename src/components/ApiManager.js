@@ -134,7 +134,7 @@ export const createTreasureRequest = (currentUser, treasureObject) => {
     body: JSON.stringify({
         userId: parseInt(currentUser.id),
         treasureId: parseInt(treasureObject.id),
-        dateRequested: new Date(),
+        dateRequested: Date.now(),
         dateReviewed: "",
         itemApproval: "Pending"
     })
@@ -193,4 +193,40 @@ export const respondTreasureRequest = (requestObject, copy) => {
       })
         .then((response) => response.json())
   }
-  
+
+export const listPendingRequests = () => {
+    return fetch("http://localhost:8088/assignedTreasures?itemApproval=Pending")
+    .then((response) => response.json())
+}
+
+export const getTreasures = (treasureId) => {
+    return fetch(`http://localhost:8088/treasures/${treasureId}`)
+    .then((response) => response.json())
+}
+
+export const saveEditedTreasure = (treasure) => {
+    return fetch (`http://localhost:8088/treasures/${treasure.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(treasure)
+    })
+    .then(response => response.json())
+}
+
+export const saveEditedTreasureAssignment = (treasureAssignment) => {
+    return fetch (`http://localhost:8088/assignedTreasures/${treasureAssignment.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(treasureAssignment)
+    })
+    .then(response => response.json())
+}
+
+export const getApprovedAssignments= (treasureAssignment) => {
+    return fetch(`http://localhost:8088/assignedTreasures?itemApproval=Approved&treasureId=${treasureAssignment.id}&_expand=user`)
+        .then(response => response.json())
+}

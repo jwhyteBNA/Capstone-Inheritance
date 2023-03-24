@@ -79,7 +79,7 @@ export const UserForm = () => {
             required
             autoFocus
             type="checkbox"
-            // value={profile.isLeader}
+            checked={profile.isLeader}
             className="form-control"
             onChange={(evt) => {
               const isCheckbox = evt.target.type === 'checkbox'
@@ -98,6 +98,7 @@ export const UserForm = () => {
             autoFocus
             type="checkbox"
             className="form-control"
+            checked={profile.isExecutor}
             onChange={(evt) => {
               const isCheckbox = evt.target.type === 'checkbox'
               const copy = { ...profile };
