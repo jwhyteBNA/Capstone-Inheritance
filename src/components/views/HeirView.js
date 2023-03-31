@@ -16,15 +16,15 @@ export const HeirViews = () => {
         path="/"
         element={
           <>
-            <h1>Inheritance</h1>
+            <h1>The Living Legend</h1>
             <div>Leave A Legacy</div>
 
             <Outlet />
           </>
         }
       >
-        <Route path="/" element={<UserProfileList />}></Route>
-        <Route path="/users/:userId" element={<ProfileDetails />} />
+        <Route path="/family_tree" element={<UserProfileList />}></Route>
+        <Route path="/family_tree/:userId" element={<ProfileDetails />} />
         <Route path="treasure" element={<TreasureContainer />} />
         <Route path="about" element={<About />} />
         <Route path="treasure/create" element={<NewTreasureForm />} />

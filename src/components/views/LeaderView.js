@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
+import { HomePage } from "../information/Homepage"
 import { NewMemoryForm } from "../memories/Memory Form"
 import { ProfileDetails } from "../profile/ProfileDetail"
 import { UserProfileList } from "../profile/ProfileList"
@@ -14,17 +15,15 @@ export const LeaderViews = () => {
         <Routes>
             <Route path="/" element={
                 <>
-                    <h1>Inheritance</h1>
-                    <div>Leave A Legacy</div>
-
-                    <Outlet />
+                   <Outlet />
                 </>
             }>
             <Route path="/" element={
-            <UserProfileList/> }>
+            <HomePage/> }>
             </Route>
-                
-                <Route path="/users/:userId" element={ <ProfileDetails /> } />
+            <Route path="/family_tree" element={
+            <UserProfileList/>}/>
+                <Route path="/family_tree/:userId" element={ <ProfileDetails /> } />
                 <Route path="treasure" element={ <TreasureContainer /> } />
                 <Route path="treasure/create" element={ <NewTreasureForm /> } />
                 <Route path="treasure/:treasureId" element={ <TreasureDetails /> } />

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getAllTreasureTypes, getTreasures, saveEditedTreasure } from "../ApiManager"
+import {  
+  FaCameraRetro,
+  FaComment, FaMapPin, FaDollarSign } from "react-icons/fa";
 
 export const TreasureEdit = () => {
     const [treasureTypes, setTreasureTypes] = useState([]);
@@ -41,11 +44,18 @@ saveEditedTreasure(treasure)
     })
 }
 
-return <form className="treasureForm">
-<h2 className="treasureForm__title">Edit Treasure</h2>
-<fieldset>
+return <main className="treasure-content">
+<form className="treasure-form2">
+<h2 className="treasure-formTitle">Edit Treasure</h2>
+  <div><img className="treasure-formImage" src={treasure.photoLink}/></div>
   <div className="form-group">
-    <label htmlFor="description">Name:</label>
+  <div className="icon">
+                <i className="fas fa-user">
+                  <FaMapPin />
+                </i>
+              </div>
+  
+    <div className="div">
     <input
       required
       autoFocus
@@ -58,11 +68,16 @@ return <form className="treasureForm">
         assignTreasure(copy);
       }}
     />
+    </div>
   </div>
-</fieldset>
-<fieldset>
+
   <div className="form-group">
-    <label htmlFor="description">Description:</label>
+  <div className="icon">
+                <i className="fas fa-user">
+                  <FaComment />
+                </i>
+              </div>
+    <div className="div">
     <input
       required
       autoFocus
@@ -76,11 +91,16 @@ return <form className="treasureForm">
         assignTreasure(copy);
       }}
     />
+    </div>
   </div>
-</fieldset>
-<fieldset>
+
   <div className="form-group">
-    <label htmlFor="photoLink">Photo Link:</label>
+  <div className="icon">
+                <i className="fas fa-user">
+                  <FaCameraRetro />
+                </i>
+              </div>
+    <div className="div">
     <input
       required
       autoFocus
@@ -94,29 +114,34 @@ return <form className="treasureForm">
         assignTreasure(copy);
       }}
     />
+    </div>
   </div>
-</fieldset>
-<fieldset>
+
   <div className="form-group">
-    <label htmlFor="valuation">Valuation:</label>
+  <div className="icon">
+                <i className="fas fa-user">
+                  <FaDollarSign />
+                </i>
+              </div>
+    <div className="div">
     <input
       required
       autoFocus
-      type="number"
+      type="currency"
       className="form-control"
       placeholder="Monetary Value"
-      value={treasure.valuation}
+      value={`${treasure.valuation}`}
       onChange={(event) => {
         const copy = { ...treasure };
         copy.valuation = parseFloat(event.target.value, 2);
         assignTreasure(copy);
       }}
     />
+    </div>
   </div>
-</fieldset>
-<fieldset>
-<div className="form-group">
-<label htmlFor="treasure-type">Treasure Type:</label>
+
+<div className="form-group-treasure-type">
+<label className="treasureTypeLabel" htmlFor="treasure-type">Treasure Type:</label>
 {treasureTypes.map((treasureType) => (
 <div key={treasureType.id}>
   <input
@@ -131,19 +156,20 @@ return <form className="treasureForm">
       assignTreasure(copy);
     }}
   />
-  <label htmlFor={`treasureType-${treasureType.id}`}>
+  <label className="treasureTypeLabel" htmlFor={`treasureType-${treasureType.id}`}>
     {treasureType.name}
   </label>
 </div>
 ))}
 </div>
-</fieldset>
+
 <button
   onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-  className="btn btn-primary"
+  className="btn__treasureForm"
 >
   Update Treasure Details
 </button>
 </form>
+</main>
 
 }

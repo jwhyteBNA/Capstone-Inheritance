@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, updateUserDetail, updateUserProfile } from "../ApiManager";
+import { FaRegAddressBook } from "react-icons/fa";
+import "./profile.css";
 
 export const UserForm = () => {
   const { userId } = useParams();
@@ -35,7 +37,7 @@ export const UserForm = () => {
         .then(() => {
             navigate("/")
         })
-    }} className="user__delete">You're Cut Off.</button>
+    }} className="btn__delete">You're Cut Off.</button>
 }
 
   const handleSubmitButtonClick = (event) => {
@@ -46,18 +48,24 @@ export const UserForm = () => {
         window.alert("Profile Information successfully updated")
       })
       .then(() => {
-        navigate("/")
+        navigate("/family_tree")
       })
   };
   return (
-    <>
+    <main className="profile-content">
     <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
         {feedback}
     </div>
-    <form className="profileForm">
-        <fieldset>
+    <form className="profile-form">
+      <h2>Edit Profile Details</h2>
+        
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
+        <div className="icon">
+                <i className="fas fa-user">
+                  <FaRegAddressBook />
+                </i>
+              </div>
+          <div className="div">
           <input
             required
             autoFocus
@@ -70,11 +78,12 @@ export const UserForm = () => {
               updateProfile(copy);
             }}
           />
+          </div>
         </div>
-      </fieldset>
-      <fieldset>
+      
+      
         <div className="form-group">
-          <label htmlFor="isLeader">Is Family Leader:</label>
+          <label htmlFor="isLeader">Leader:</label>
           <input
             required
             autoFocus
@@ -89,10 +98,9 @@ export const UserForm = () => {
             }}
           />
         </div>
-      </fieldset>
-      <fieldset>
+    
         <div className="form-group">
-          <label htmlFor="isExecutor">Is Executor:</label>
+          <label htmlFor="isExecutor"> Executor:</label>
           <input
             required
             autoFocus
@@ -107,16 +115,17 @@ export const UserForm = () => {
             }}
           />
         </div>
-      </fieldset>
+     
 
       <button
         onClick={(clickEvent) => handleSubmitButtonClick(clickEvent)}
-        className="btn btn-primary"
+        className="btn__profile"
       >
         Update Profile
       </button>
+      {deleteButton()}
     </form>
-    {deleteButton()}
-    </>
+    
+    </main>
   );
 };

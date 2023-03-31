@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { MemoryRouter, useNavigate, useParams } from "react-router-dom";
 import { createMemory } from "../ApiManager";
+import "./memory.css";
+import { FaFileVideo, FaCameraRetro } from "react-icons/fa";
 
 export const NewMemoryForm = () => {
   const { treasureId } = useParams();
@@ -32,13 +34,16 @@ export const NewMemoryForm = () => {
   };
 
   return (
-    <form className="memoryForm">
-      <h2 className="memoryForm__title">Add Your Memory!</h2>
-      <fieldset>
+    <main className="memory-content">
+    <form className="memory-form">
+      <h2 className="memory-formTitle">Add Your Memory!</h2>
+      
         <div className="form-group">
-          <label htmlFor="description">Memory Description:</label>
+          <label htmlFor="description"></label>
           <textarea
             autoFocus
+            rows="7"
+            cols="75"
             type="text"
             className="form-control"
             placeholder="Share your Memory - the more detail, the better!"
@@ -50,10 +55,15 @@ export const NewMemoryForm = () => {
             }}
           />
         </div>
-      </fieldset>
-      <fieldset>
-        <label htmlFor="video"> Video Link </label>
-        <input
+      
+        <div className="form-group">
+        <div className="icon">
+                <i className="fas fa-user">
+                  <FaFileVideo />
+                </i>
+              </div>
+          <div className="memory-form-input">
+          <input
           type="url"
           id="video"
           className="form-control"
@@ -65,9 +75,16 @@ export const NewMemoryForm = () => {
             setMemory(copy);
           }}
         />
-      </fieldset>
-      <fieldset>
-        <label htmlFor="photo"> Photo Link </label>
+        </div>
+        </div>
+      
+        <div className="form-group">
+        <div className="icon">
+                <i className="fas fa-user">
+                  <FaCameraRetro />
+                </i>
+              </div>
+          <div className="memory-form-input">
         <input
           type="text"
           id="photo"
@@ -80,13 +97,16 @@ export const NewMemoryForm = () => {
             setMemory(copy);
           }}
         />
-      </fieldset>
+        </div>
+        </div>
+      
       <button
         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-        className="btn btn-primary"
+        className="btn btn__memory"
       >
         Submit Your Memory
       </button>
     </form>
+    </main>
   );
 };
