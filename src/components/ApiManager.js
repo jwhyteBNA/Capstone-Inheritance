@@ -23,7 +23,7 @@ export const registration = (user) => {
 
 //TreasureList.js
 export const listTreasures = () => {
-    return fetch("http://localhost:8088/treasures?_expand=treasureType&_embed=assignedTreasures")
+    return fetch("http://localhost:8088/treasures?&_expand=treasureType&_embed=assignedTreasures")
     .then((response) => response.json())
 }
 
@@ -172,11 +172,6 @@ export const createMemory = (memoryToSendToAPI) => {
 }
 
 //Requests
-export const listRequestsByTreasure = () => {
-    return fetch("http://localhost:8088/assignedTreasures?&_sort=treasureId&_expand=treasure")
-    .then((response) => response.json())
-}
-
 export const deleteTreasureRequest = (treasureRequest) => {
     return fetch(`http://localhost:8088/assignedTreasures/${treasureRequest.id}`, {
         method: "DELETE"
@@ -195,7 +190,7 @@ export const respondTreasureRequest = (requestObject, copy) => {
   }
 
 export const listPendingRequests = () => {
-    return fetch("http://localhost:8088/assignedTreasures?itemApproval=Pending")
+    return fetch("http://localhost:8088/assignedTreasures?itemApproval=Pending&_sort=treasureId&_expand=treasure&_expand=user")
     .then((response) => response.json())
 }
 
@@ -227,6 +222,6 @@ export const saveEditedTreasureAssignment = (treasureAssignment) => {
 }
 
 export const getApprovedAssignments= (treasureAssignment) => {
-    return fetch(`http://localhost:8088/assignedTreasures?itemApproval=Approved&treasureId=${treasureAssignment.id}&_expand=user`)
+    return fetch(`http://localhost:8088/assignedTreasures?itemApproval=Approved&treasureId=${treasureAssignment.id}&_expand=user&_expand=treasure`)
         .then(response => response.json())
 }

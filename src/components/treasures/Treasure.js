@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { createTreasureRequest, deleteTreasure, getHeirUsers } from "../ApiManager";
+import { createTreasureRequest, deleteTreasure } from "../ApiManager";
+import "./treasures.css";
 
 export const Treasure = ({ treasureObject, getAllTreasures, currentUser
 }) => {
@@ -14,7 +15,7 @@ return assignedTreasure.userId === currentUser.id || assignedTreasure.itemApprov
     if (!requestedAlready){
       return (
       <button
-      className="btn btn-request"
+      className="btn btn_request"
       onClick={() => {
         createTreasureRequest(currentUser, treasureObject)
       .then(() => {
@@ -29,13 +30,13 @@ return assignedTreasure.userId === currentUser.id || assignedTreasure.itemApprov
   const deleteButton = () => {
     if (currentUser.leader) {
       return (
-        <button
+        <button className="btn btn__deleteTreasure"
           onClick={() => {
             deleteTreasure(treasureObject).then(() => {
               getAllTreasures()
             })
     }}   
-          className="btn btn__deleteTreasure"
+          
         >
           {" "}
           Delete Treasure
@@ -46,11 +47,15 @@ return assignedTreasure.userId === currentUser.id || assignedTreasure.itemApprov
     }
   };
 
-  return <section className="treasure" key={`treasure--${treasureObject.id}`}>
-      <img className="treasure_img" src={treasureObject?.photoLink}/>
-      <Link to={`/treasure/${treasureObject.id}`}>{treasureObject?.name}</Link>
-      <span>{treasureObject?.treasureType?.name}</span>
-      {/* {currentUser.leader ? <div>Assigned To: {treasureObject..</div> : ""} */}
+const randomRotate = () => {
+    const deg = Math.random() * (5 - -5) + -5;
+    return 'rotate(' + deg + 'deg)';
+    }
+
+  return <section className="treasure" key={`treasure--${treasureObject.id}`} style={{transform: randomRotate()}}>
+      <figure className="treasure__figure"><Link to={`/treasure/${treasureObject.id}`}><img className="treasure_img" src={treasureObject?.photoLink}/></Link></figure>
+      <Link to={`/treasure/${treasureObject.id}`}><h3>{treasureObject?.name}</h3></Link>
+      <span className="treasure_type">{treasureObject?.treasureType?.name}</span>
       <footer className="treasure__footer">
        {deleteButton()}
        {treasureObject.id===treasureObject.assignedTreasures?.treasureId ? ("") : (requestButton())}

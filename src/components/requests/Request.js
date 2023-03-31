@@ -1,4 +1,6 @@
 import { deleteTreasureRequest, listPendingRequests, respondTreasureRequest } from "../ApiManager";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import "./request.css";
 
 export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
 
@@ -6,8 +8,12 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
         return (
           <button
             onClick={closeRequestYes}
-            className="request__delete">
-            ✅
+            className="request__yes">
+            <div className="request_icon">
+                <i className="fas-thumb">
+                  <FaThumbsUp />
+                </i>
+              </div>
           </button>
         );
       };
@@ -17,8 +23,12 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
         return (
           <button
             onClick={closeRequestNo}
-            className="request__delete">
-            🚫
+            className="request__no">
+            <div className="request_icon">
+                <i className="fas-thumb">
+                  <FaThumbsDown />
+                </i>
+              </div>
           </button>
         );
       };
@@ -67,16 +77,26 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
         })
       };
 
+      const randomRotate = () => {
+        const deg = Math.random() * (5 - -5) + -5;
+        return 'rotate(' + deg + 'deg)';
+        }
+
     return (
-    <section className="request" key={`request--${requestObject.id}`}>
-            <div>{requestObject.treasure.name}</div>
-            <img className="request__img" src={requestObject.treasure.photoLink}/>
-            <div>Date Requested: {new Date(requestObject.dateRequested).getMonth()}/{new Date(requestObject.dateRequested).getDate()}/{new Date(requestObject.dateRequested).getFullYear()}</div>
+    <section className="request" key={`request--${requestObject.id}`} style={{transform: randomRotate()}}>
+            <h3>{requestObject.treasure.name}</h3>
+            <figure className="memory__figure"><img className="request__img" src={requestObject.treasure.photoLink}/></figure>
+            <div><strong>Requested By:</strong> {requestObject.user.fullName}</div>
+            <div><strong>Date Requested:</strong>  {new Date(requestObject.dateRequested).getMonth()}/{new Date(requestObject.dateRequested).getDate()}/{new Date(requestObject.dateRequested).getFullYear()}</div>
+            
             {currentUser.leader ? (<>
-            <div>{confirmRequest()}</div> 
-            <div>{denyRequest()}</div>
+            <section className="request_btns">
+            <div className="request-btn">{confirmRequest()}</div> 
+            <div className="request-btn">{denyRequest()}</div>
+            </section>
             </>)
              : deleteRequest()}
+             
             </section>
     )
 }

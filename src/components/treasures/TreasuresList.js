@@ -26,7 +26,6 @@ export const TreasureList = ({ searchTermState, filteredValueState, filteredAssi
     }
   }, [reservedByHeir]);
 
-  //TODO: Filter by all not yet claimed treasures
   useEffect(() => {
     if (availableToRequest) {
       const availableTreasures = treasures.filter(
@@ -90,7 +89,8 @@ useEffect(() => {
   }, [treasures]);
 
   return (
-    <>
+    <section className="treasure__section">
+    <section className="heir_filter">
       {familyUserObject.leader ? (
         ""
       ) : (
@@ -116,11 +116,10 @@ useEffect(() => {
         </>
       )}
 
-      <button onClick={() => navigate("/treasure/create")}>
+      <button className="btn btn__create" onClick={() => navigate("/treasure/create")}>
         Create New Treasure
       </button>
-
-      <h2>List of Treasures</h2>
+      </section>
 
       <article className="treasures">
         {filteredTreasures.map((treasure) => (
@@ -132,7 +131,7 @@ useEffect(() => {
           />
         ))}
       </article>
-    </>
+    </section>
   );
 };
 

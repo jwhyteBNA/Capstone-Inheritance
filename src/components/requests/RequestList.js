@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listRequestsByTreasure} from "../ApiManager";
+import { listPendingRequests} from "../ApiManager";
 import { Request } from "./Request";
 import "./request.css";
 
@@ -10,7 +10,7 @@ export const RequestList = () => {
   const familyUserObject = JSON.parse(localFamilyUser);
 
   const listOpenRequests = () => {
-    listRequestsByTreasure().then((requestArray) => {
+    listPendingRequests().then((requestArray) => {
       setRequests(requestArray);
     });
   }
@@ -33,8 +33,8 @@ export const RequestList = () => {
     };
   }, [requests]);
 
-  return <article>
-  <h2>Pending Requests</h2>
+  return <article className="all_requests">
+  <h2>Requests</h2>
   <section className="requests">
   {filteredRequests.map(
       (request) => <Request key={`request --${request.id}`}

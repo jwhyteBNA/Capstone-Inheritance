@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllTreasureTypes, getHeirUsers } from "../ApiManager"
+import "./treasures.css";
 
 export const TreasureValueFilter = ({setterFunction}) => {
     const [treasureTypes, setTreasureTypes] = useState([])
@@ -15,8 +16,8 @@ export const TreasureValueFilter = ({setterFunction}) => {
     )
 
     return (
-        <div>
-            <select onChange={
+        <div className="treasure_filter">
+            <select className="treasure_value_filter" onChange={
                 (changeEvent) => {
                     setterFunction(changeEvent.target.value)
                 }
@@ -24,7 +25,7 @@ export const TreasureValueFilter = ({setterFunction}) => {
             >
             <option value="">Treasure Value?</option>
             {treasureTypes.map((treasureType) => (
-                <option key={treasureType.id} value={treasureType.id}>
+                <option className="filter__options" key={treasureType.id} value={treasureType.id}>
                     {treasureType.name}
                 </option>
         ))}
@@ -45,8 +46,8 @@ export const TreasureAssignmentFilter = ({setterFunction}) => {
       )
 
       return (
-        <div>
-            <select onChange={
+        <div className="treasure_filter">
+            <select className="treasure_heir_filter" onChange={
                 (changeEvent) => {
                     setterFunction(changeEvent.target.value)
                 }

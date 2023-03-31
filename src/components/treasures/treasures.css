@@ -1,17 +1,20 @@
-.treasure {
-    display: flex;
-    flex-flow: column;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    width: 200px;
-    align-content: center;
-    border: 6px dashed navy;
-    background-color:rgb(134, 199, 106); 
-    border: 1px dotted rgb(140, 176, 233);
+.treasures_title {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 40px;
+    color: #3c7967;
 }
 
-.treasure_img {
- width: 150px;
+.treasure_search {
+display: flex;
+justify-content: center;
+padding: 10px;
+}
+
+.treasure_filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 0 20px;
 }
 
 .treasures {
@@ -19,7 +22,233 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    
     padding: 0.7rem;
     margin: 1rem;
 }
+
+.heir_filter {
+  display: flex;
+  justify-content: center;
+}
+
+.btn__create {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	width: 40%;
+	height: 20px;
+	border-radius: 30px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #78D1CC, #38d39f, #F79B68);
+	background-size: 200%;
+	font-size: 1rem;
+	color: #343333;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.btn_details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	width: 100%;
+	height: 20px;
+	border-radius: 30px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #78D1CC, #38d39f, #F79B68);
+	background-size: 200%;
+	font-size: 1rem;
+	color: #343333;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+
+}
+
+.btn__deleteTreasure, .btn_request {
+	display: flex;
+  justify-content: center;
+  align-items: flex-end;
+	width: 100%;
+	height: 20px;
+	border-radius: 30px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #78D1CC, #38d39f, #F79B68);
+	background-size: 200%;
+	font-size: 1rem;
+	color: #343333;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.btn:hover, .btn_details:hover {
+	background-position: right;
+}
+
+.treasure {
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    margin: 1rem;
+    width: 250px;
+    align-content: center;
+    --img-scale: 1.001;
+    --title-color: #24856b;
+    --link-icon-translate: -20px;
+    --link-icon-opacity: 0;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: none;
+    background: rgb(227, 194, 185, .7);
+    opacity: .8;
+    transform-origin: center;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+  }
+  
+  /* basic article elements styling */
+  .treasure h3 {
+    margin: 5px 0 18px 0;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    color: var(--title-color);
+    transition: color 0.3s ease-out;
+  }
+
+  .treasure_type {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+  }
+  
+  .treasure__figure {
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  /* .treasure__footer{
+to move button to the bottom
+  } */
+  
+  .treasure img {
+    max-width: 100%;
+    transform-origin: center;
+    transform: scale(var(--img-scale));
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .treasure-body {
+    padding: 24px;
+  }
+  
+  .treasure a {
+    text-decoration: none;
+    color: #4FAC93;
+  }
+  
+  .treasure a:focus {
+    outline: 1px dotted #28666e;
+  }
+  
+  /* using the has() relational pseudo selector to update our custom properties */
+  .treasure:has(:hover, :focus) {
+    --img-scale: 1.1;
+    --title-color: #4FAC93;
+    --link-icon-translate: 0;
+    --link-icon-opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+
+  .treasure_value_filter,.treasure_heir_filter, .treasure_search_filter{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+  }
+
+  .treasure_details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .treasure_info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .treasure_img {
+    margin: 0 0 0 0;
+    width: 400px;
+    border-radius: 15px;
+    border: 2px solid #9eddc4
+  }
+
+  .treasure_image {
+    margin: 20px 0 0 0;
+    width: 400px;
+    border-radius: 15px;
+    border: 2px solid #9eddc4
+  }
+
+  .treasure_edit {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .treasure_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+  }
+
+  .treasure_header h2 {
+    color: #3c7967;
+    margin-bottom: 20px;
+    align-self: center;
+  }
+
+  .memories {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 40px;
+  }
+
+  .memories h2 {
+    color: #3c7967;
+    margin-bottom: 20px;
+    align-self: center;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  .memory_detail {
+    width: 100%;
+    font-family: 'Kalam', cursive;
+    font-size: 1.2rem;
+    background-color: rgb(227, 194, 185, .7);
+    border: 1px solid rgb(60, 121, 103);
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    color: rgb(60, 121, 103)
+  }
