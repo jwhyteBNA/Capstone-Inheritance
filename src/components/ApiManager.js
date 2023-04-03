@@ -150,7 +150,7 @@ export const deleteTreasure = (treasureObject) => {
 
 //TreasureDetail
 export const treasureDetail = (treasureId) => {
-    return fetch(`http://localhost:8088/treasures?&id=${treasureId}&_embed=treasureMemories&_embed=assignedTreasure`)
+    return fetch(`http://localhost:8088/treasures?&id=${treasureId}&_embed=treasureMemories&_embed=assignedTreasures`)
         .then(response => response.json())
 }
 
@@ -210,18 +210,24 @@ export const saveEditedTreasure = (treasure) => {
     .then(response => response.json())
 }
 
-export const saveEditedTreasureAssignment = (treasureAssignment) => {
-    return fetch (`http://localhost:8088/assignedTreasures/${treasureAssignment.id}`, {
+export const saveEditedTreasureAssignment = (assignedTreasure) => {
+    return fetch (`http://localhost:8088/assignedTreasures/${assignedTreasure.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(treasureAssignment)
+        body: JSON.stringify(assignedTreasure)
     })
     .then(response => response.json())
 }
 
-export const getApprovedAssignments= (treasureAssignment) => {
-    return fetch(`http://localhost:8088/assignedTreasures?itemApproval=Approved&treasureId=${treasureAssignment.id}&_expand=user&_expand=treasure`)
+export const getApprovedAssignments= (treasureId) => {
+    return fetch(`http://localhost:8088/assignedTreasures?itemApproval=Approved&treasureId=${treasureId}`)
         .then(response => response.json())
+}
+
+export const deleteTreasureAssignment = (assignment) => {
+    return fetch(`http://localhost:8088/assignedTreasures/${assignment.id}`, {
+        method: "DELETE"
+    })
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MemoryRouter, useNavigate, useParams } from "react-router-dom";
 import { createMemory } from "../ApiManager";
 import "./memory.css";
-import { FaFileVideo, FaCameraRetro } from "react-icons/fa";
+import { FaFileVideo, FaCameraRetro, FaComment } from "react-icons/fa";
 
 export const NewMemoryForm = () => {
   const { treasureId } = useParams();
@@ -11,6 +11,8 @@ export const NewMemoryForm = () => {
     userId: "",
     treasureId: "",
     description: "",
+    photoLink: "",
+    videoLink: ""
   });
 
   const memoryTreasureId = treasureId;
@@ -24,8 +26,8 @@ export const NewMemoryForm = () => {
       userId: parseInt(familyUserObject.id),
       treasureId: parseInt(memoryTreasureId),
       description: memory.description,
-      videoLink: memory.videoLink,
-      photoLink: memory.photo
+      photoLink: memory.photoLink,
+      videoLink: memory.videoLink
     };
 
     createMemory(memoryToSendToAPI).then(() => {
@@ -38,14 +40,18 @@ export const NewMemoryForm = () => {
     <form className="memory-form">
       <h2 className="memory-formTitle">Add Your Memory!</h2>
       
-        <div className="form-group">
-          <label htmlFor="description"></label>
+        <div className="form-textarea">
+        <div className="icon">
+                <i className="fas fa-user">
+                  <FaComment />
+                </i>
+              </div>
           <textarea
             autoFocus
             rows="7"
             cols="75"
             type="text"
-            className="form-control"
+            className="form-controltext"
             placeholder="Share your Memory - the more detail, the better!"
             value={memory.description}
             onChange={(event) => {
@@ -90,10 +96,10 @@ export const NewMemoryForm = () => {
           id="photo"
           className="form-control"
           placeholder="Optional Photo Link"
-          value={memory.photo}
+          value={memory.photoLink}
           onChange={(event) => {
             const copy = { ...memory };
-            copy.photo = event.target.value;
+            copy.photoLink = event.target.value;
             setMemory(copy);
           }}
         />

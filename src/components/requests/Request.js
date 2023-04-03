@@ -86,8 +86,8 @@ export const Request = ({ requestObject, currentUser, listOpenRequests }) => {
     <section className="request" key={`request--${requestObject.id}`} style={{transform: randomRotate()}}>
             <h3>{requestObject.treasure.name}</h3>
             <figure className="memory__figure"><img className="request__img" src={requestObject.treasure.photoLink}/></figure>
-            <div><strong>Requested By:</strong> {requestObject.user.fullName}</div>
-            <div><strong>Date Requested:</strong>  {new Date(requestObject.dateRequested).getMonth()}/{new Date(requestObject.dateRequested).getDate()}/{new Date(requestObject.dateRequested).getFullYear()}</div>
+            <div className="request_name"><strong>Requested By:</strong> {requestObject.user.fullName}</div>
+            <div><strong>Date Requested:</strong>  {new Date(requestObject.dateRequested).getMonth()+1}/{new Date(requestObject.dateRequested).getDate()}/{new Date(requestObject.dateRequested).getFullYear()}</div>
             
             {currentUser.leader ? (<>
             <section className="request_btns">

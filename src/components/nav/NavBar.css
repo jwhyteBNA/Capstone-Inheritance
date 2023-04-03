@@ -1,4 +1,8 @@
 
+nav {
+	z-index: 9999;
+}
+
 :root {
 	--mainColor: #5cd8b7;
 	--mainColorLight: #B1EDE0;

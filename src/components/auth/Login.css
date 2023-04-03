@@ -4,6 +4,12 @@
 	box-sizing: border-box;
 }
 
+.login-main {
+	background: rgba(0, 0, 0, 0) no-repeat center center fixed !important;
+	background-size: cover;
+	height: 100vh;
+  }
+
 main{
     font-family: 'Raleway', sans-serif;
     overflow: hidden;

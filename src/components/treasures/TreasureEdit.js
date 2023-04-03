@@ -127,7 +127,7 @@ return <main className="treasure-content">
     <input
       required
       autoFocus
-      type="currency"
+      type="number"
       className="form-control"
       placeholder="Monetary Value"
       value={`${treasure.valuation}`}

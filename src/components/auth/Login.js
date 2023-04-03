@@ -36,8 +36,8 @@ export const Login = () => {
     });
   };
 
-  return ( <main>
-      <img className="wave" src={waveImage} />
+  return ( <main className="login-main">
+     <img className="wave" src={waveImage} />
       <div className="login-container">
         <div className="logo-img">
           <img src={logo} />

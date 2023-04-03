@@ -8,7 +8,7 @@ import "./treasureForms.css";
 
 export const NewTreasureForm = () => {
   const [treasureTypes, setTreasureTypes] = useState([]);
-  const [ heirUsers, setHeirUsers ] = useState([]);
+  const [ users, setUsers ] = useState([]);
   const navigate = useNavigate();
   const [treasure, setTreasure] = useState({
     userId: "",
@@ -42,7 +42,7 @@ const [assignedTreasure, setAssigned] = useState({
     };
 
     const assignedTreasureToSendToAPI = {
-      userId: parseInt(familyUserObject.id),
+      userId: parseInt(assignedTreasure.userId),
       dateRequested: "",
       dateReviewed: Date.now(),
       itemApproval: "Approved"
@@ -57,6 +57,25 @@ const [assignedTreasure, setAssigned] = useState({
       navigate("/treasure");
     })
   };
+
+  const handleSaveTreasureOnlyClick = (event) => {
+    event.preventDefault();
+
+    const treasureToSendToAPI = {
+      userId: parseInt(familyUserObject.id),
+      name: treasure.name,
+      description: treasure.description,
+      treasureTypeId: parseInt(treasure.treasureTypeId),
+      photoLink: treasure.photoLink,
+      valuation: parseFloat(treasure.valuation),
+    };
+
+    createTreasureItem(treasureToSendToAPI)
+    .then(() => {
+      navigate("/treasure");
+    })
+  };
+
 
   const handleHeirSaveButtonClick = (event) => {
     event.preventDefault();
@@ -97,8 +116,8 @@ const [assignedTreasure, setAssigned] = useState({
   );
 
   useEffect(() => {
-    getHeirUsers().then((heirUserArray) => {
-      setHeirUsers(heirUserArray)
+    getHeirUsers().then((userArray) => {
+      setUsers(userArray)
     })
   },
   []
@@ -133,18 +152,20 @@ const [assignedTreasure, setAssigned] = useState({
         </div>
       
    
-        <div className="form-group">
+        <div className="form-textarea">
         <div className="icon">
-                <i className="fas fa-user">
+                <i className="fas fa-comment">
                   <FaComment />
                 </i>
               </div>
           <div className="treasure-form-input">
-          <input
+          <textarea
             required
             autoFocus
             type="text"
-            className="form-control"
+            rows="5"
+            colums="10"
+            className="form-controltext"
             placeholder="Brief description of item/where it can be found"
             value={treasure.description}
             onChange={(event) => {
@@ -227,11 +248,11 @@ const [assignedTreasure, setAssigned] = useState({
   </div>
 
       {familyUserObject.leader? (
-      
+      <>
         <div className="form-group-heir">
           <label htmlFor="heir"></label>
           <select
-            value={assignedTreasure.heirUserId}
+            value={assignedTreasure.userId}
             onChange={(evt) => {
               const copy = { ...assignedTreasure };
               copy.userId = evt.target.value;
@@ -240,20 +261,29 @@ const [assignedTreasure, setAssigned] = useState({
           >
             {" "}
             <option value="">Select An Assigned Heir (Optional)</option>
-            {heirUsers.map((heirUser) => (
-              <option key={heirUser.id} value={heirUser.id}>
-                {heirUser.fullName}
+            {users.map((user) => (
+              <option key={user.id} value={user.id}>
+                {user.fullName}
               </option>
             ))}
           </select>
         </div>
+<div>
+  <button
+onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+className="btn__treasureForm"
+>
+Submit AND Assign Treasure
+</button>
+</div>
+</>
       
       ) : (
         <button
         onClick={(clickEvent) => handleHeirSaveButtonClick(clickEvent) } className="btn__treasureForm">Submit AND Request Treasure</button>
       )}
       <button
-        onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+        onClick={(clickEvent) => handleSaveTreasureOnlyClick(clickEvent)}
         className="btn__treasureForm"
       >
         Submit Treasure

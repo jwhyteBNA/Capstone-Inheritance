@@ -28,6 +28,7 @@ main{
 
 .treasure-formImage {
     height: 250px;
+	border-radius: 8px;
 }
 
 .icon {
@@ -51,6 +52,32 @@ main{
     margin: 25px 0;
     padding: 5px 0;
     border-bottom: 2px solid #EFEFF0;
+}
+
+.form-textarea {
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+	background: rgb(184, 126, 110, 0);
+	font-family: 'Raleway', sans-serif;
+	border: none;
+	outline: none;
+	
+    border-bottom: 2px solid #EFEFF0;
+}
+
+.form-controltext {
+	background: rgb(184, 126, 110, 0);
+	color: #555;
+	padding: 5px 10px;
+	font-family: 'Raleway', sans-serif;
+	width: 395px;
+	height: 55px;
+	font-size: 18px;
+	border: none;
+	outline: none;
 }
 
 .form-group > div {
@@ -152,7 +179,7 @@ select {
 .btn__treasureForm {
 	display: block;
 	width: 100%;
-	height: 40px;
+	height: 50px;
 	border-radius: 25px;
 	outline: none;
 	border: none;
@@ -167,7 +194,25 @@ select {
 	transition: .5s;
 }
 
-.btn__treasureForm:hover {
+.btn__deleteAsmt {
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #F79B68, #F4716D, #b87e6e);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.btn__treasureForm:hover, .btn__deleteAsmt:hover {
 	background-position: right;
 }
 

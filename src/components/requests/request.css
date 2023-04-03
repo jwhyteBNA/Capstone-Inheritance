@@ -18,6 +18,10 @@
     color: #3c7967;
 }
 
+.request_name {
+  margin-top: 10px;
+}
+
 .request_btns {
     display: flex;
     flex-direction: row;
@@ -64,7 +68,26 @@
 	transition: .5s;
 }
 
-.request__yes:hover, .request__no:hover {
+.request__delete {
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #F79B68, #F4716D, #b87e6e);
+	background-size: 200%;
+	font-size: 1.2rem;
+  padding: 5px;
+	color: #FFF;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.request__yes:hover, .request__no:hover, .request__delete:hover {
 	background-position: right;
 }
 
