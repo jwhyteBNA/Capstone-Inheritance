@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getHeirUsers, createAssignedTreasure } from "../ApiManager";
+import { getHeirUsers, saveEditedTreasureAssignment, getApprovedAssignments, deleteTreasureAssignment } from "../ApiManager";
 import "./treasureForms.css";
 
-export const TreasureAssignmentEdit = () => {
+export const TreasureReAssign = () => {
   const [users, setUsers] = useState([]);
-  const [assignedTreasure, setAssigned] = useState({
-    userId: "",
-    treasureId: "",
-    dateRequested:"",
-    dateReviewed: Date.now(),
-    itemApproval: "Approved"
+  const [assignment, updateAssigned] = useState({
+    userId: ""
   })
   const { treasureId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getApprovedAssignments(treasureId)
+    .then((data) => {
+        const singleAssignment = data[0]
+      updateAssigned(singleAssignment);
+    })
+}, [])
 
   useEffect(() => {
     getHeirUsers().then((usersArray) => {
@@ -24,19 +28,20 @@ export const TreasureAssignmentEdit = () => {
   const handleSaveButtonClick = (event) => {
     event.preventDefault();
   
-    const assignedTreasureToSendToAPI = {
-      userId: parseInt(assignedTreasure.userId),
-      dateRequested: "",
-      dateReviewed: Date.now(),
-      itemApproval: "Approved",
-      treasureId: parseInt(treasureId),
-    };
-
-    createAssignedTreasure(assignedTreasureToSendToAPI)  
-    .then(() => {
-      navigate(`/treasure/${treasureId}`);
-    })
+    saveEditedTreasureAssignment(assignment)  
+      .then(() => {
+        navigate(`/treasure/${treasureId}`);
+      })
   };
+
+  const handleDeleteButtonClick = (event) => {
+    event.preventDefault();
+    
+    deleteTreasureAssignment(assignment)
+          .then(() => {
+            navigate(`/treasure/${treasureId}`);
+          });
+};
 
    return (
     <main className="treasure-content">
@@ -53,10 +58,11 @@ export const TreasureAssignmentEdit = () => {
                 id={`user-${user.id}`}
                 name="user"
                 value={user.id}
+                checked={user.id === assignment.userId}
                 onChange={(event) => {
-                  const copy = { ...assignedTreasure };
-                  copy.userId = event.target.value;
-                  setAssigned(copy);
+                  const copy = { ...assignment };
+                  copy.userId = parseInt(event.target.value);
+                  updateAssigned(copy);
                 }}
               />
               <label className="treasureTypeLabel" htmlFor={`user-${user.id}`}>{user.fullName}</label>
@@ -71,6 +77,14 @@ export const TreasureAssignmentEdit = () => {
           className="btn__treasureForm"
         >
           Update Treasure Assignment
+        </button>
+        <button
+          onClick={(clickEvent) =>
+              handleDeleteButtonClick(clickEvent)
+            }
+          className="btn__deleteAsmt"
+        >
+          Delete Treasure Assignment
         </button>
       </form>
     </main>

@@ -35,6 +35,32 @@
 	font-size: 2.9rem;
 }
 
+.form-textarea {
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+	background: rgb(184, 126, 110, 0);
+	font-family: 'Raleway', sans-serif;
+	border: none;
+	outline: none;
+    border-bottom: 2px solid #EFEFF0;
+}
+
+.form-controltext {
+	background: rgb(184, 126, 110, 0);
+	color: #555;
+	padding: 5px 10px;
+	font-family: 'Raleway', sans-serif;
+	width: 395px;
+	height: 55px;
+	font-size: 18px;
+	border: none;
+	outline: none;
+}
+
+
 .form-group {
 	position: relative;
     display: grid;

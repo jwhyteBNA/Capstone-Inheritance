@@ -126,9 +126,10 @@
 }
 
 .profile-form{
-	width: 500px;
+	  width: 500px;
     background: rgb(184, 126, 110, .1);
     padding: 40px;
+    margin-top: 20px;
     border-radius: 30px;
 }
 

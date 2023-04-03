@@ -14,16 +14,19 @@ export const LivingLegend = () => {
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<Register />} />
 
+
 		<Route path="*" element={
 			<Authorized>
 				<>
+					<div className="ll-app">
 					<NavBar />
 					<ApplicationViews />
-					
+					</div>
 				</>
 			</Authorized>
 
 		} />
+		
 	</Routes>
 }
 

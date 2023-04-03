@@ -1,0 +1,45 @@
+.logo_homepage {
+    display: flex;
+    margin: 30px auto;
+    height: 300px;
+}
+
+.homepage h1 {
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 128, 94);
+    font-family: 'Mirza', cursive;
+    font-size: 45px;
+}
+
+.word {
+    font-size: 30px;
+    font-family: 'Mirza', cursive;
+}
+
+.definition, .terms {
+ font-size: 20px;
+ background-color:rgb(184, 126, 110, .2);
+ margin: 0 30px;
+ padding: 10px;
+ color: #555;
+}
+
+.explanation {
+    font-size: 18px;
+    color: #555;
+   }
+
+   .termsPage h1 {
+    display: flex;
+    font-family: 'Mirza', cursive;
+	margin: 20px 0;
+	color: #b87e6e;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+    justify-content: center;
+   }
+
+.terms > div {
+    margin: 20px 0;
+   }

@@ -1,15 +1,25 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { listPendingRequests } from "../ApiManager";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaLeaf, FaTimes } from "react-icons/fa";
 import "./NavBar.css";
 import LL2 from "../../images/LL2.svg";
-
 
 export const LeaderNavBar = () => {
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
   const navRef = useRef();
+ 
+  const links = document.querySelectorAll('.navbar__item');
+
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    const navMenu = document.querySelector('nav');
+    navMenu.classList.remove('responsive_nav');
+    const navBtn = document.querySelector('.nav-btn');
+    navBtn.classList.remove('open');
+  });
+});
 
   useEffect(() => {
     listPendingRequests().then((requestArray) => {
@@ -59,7 +69,7 @@ export const LeaderNavBar = () => {
         </button>
       </nav>
       <button className="nav-btn" onClick={showNavbar}>
-        <FaBars />
+        <FaLeaf />
       </button>
     </header>
   );

@@ -9,6 +9,7 @@ import { TreasureAssignmentEdit } from "../treasures/TreasureAssignmentEdit"
 import { TreasureContainer } from "../treasures/TreasureContainer"
 import { TreasureDetails } from "../treasures/TreasureDetail"
 import { TreasureEdit } from "../treasures/TreasureEdit"
+import { TreasureReAssign } from "../treasures/TreasureReAssign"
 
 export const LeaderViews = () => {
 	return (
@@ -21,14 +22,14 @@ export const LeaderViews = () => {
             <Route path="/" element={
             <HomePage/> }>
             </Route>
-            <Route path="/family_tree" element={
-            <UserProfileList/>}/>
-                <Route path="/family_tree/:userId" element={ <ProfileDetails /> } />
-                <Route path="treasure" element={ <TreasureContainer /> } />
-                <Route path="treasure/create" element={ <NewTreasureForm /> } />
+            <Route path="family_tree" element={<UserProfileList />}/>
+                <Route path="family_tree/:userId" element={ <ProfileDetails /> } />
+                <Route path="treasure" element={<TreasureContainer />} />
+                <Route path="treasure/create" element={<NewTreasureForm />} />
                 <Route path="treasure/:treasureId" element={ <TreasureDetails /> } />
                 <Route path="treasure/:treasureId/editDetails" element={ <TreasureEdit /> } />
                 <Route path="treasure/:treasureId/editAssignment" element={ <TreasureAssignmentEdit /> } />
+                <Route path="treasure/:treasureId/editAssignedHeir" element={ <TreasureReAssign /> } />
                 <Route path="treasure/:treasureId/createMemory" element={ <NewMemoryForm /> } />
                 <Route path="requests" element={ <RequestList/> } />
             </Route>

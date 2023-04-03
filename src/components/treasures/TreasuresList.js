@@ -65,7 +65,7 @@ useEffect(() => {
 useEffect(() => {
   let filteredTreasureByAssignment = treasures
   if (filteredAssignmentState) {
-    filteredTreasureByAssignment = treasures.filter((treasure) => treasure.assignedTreasures.find((assignedTreasure) => assignedTreasure.userId === parseInt(filteredAssignmentState))
+    filteredTreasureByAssignment = treasures.filter((treasure) => treasure.assignedTreasures.find((assignedTreasure) => assignedTreasure.itemApproval === "Approved" && assignedTreasure.userId === parseInt(filteredAssignmentState))
 )}
   setFiltered(filteredTreasureByAssignment)
 },
@@ -95,7 +95,7 @@ useEffect(() => {
         ""
       ) : (
         <>
-          <button
+          <button className="user_btn"
             onClick={() => {
               setReserved(false)
               setAvailable(false);
@@ -103,28 +103,29 @@ useEffect(() => {
           >
             All Treasures
           </button>
-          <button
+          <button className="user_btn"
             onClick={() => {
               setReserved(true);
             }}
           >
             My Treasures
           </button>
-          <button onClick={() => {
+          <button className="user_btn" onClick={() => {
             setAvailable(true)
           }}>Not Yet Claimed</button>
         </>
       )}
-
+      </section>
+      <section className="create">
       <button className="btn btn__create" onClick={() => navigate("/treasure/create")}>
         Create New Treasure
       </button>
       </section>
 
       <article className="treasures">
-        {filteredTreasures.map((treasure) => (
+        {filteredTreasures.sort((a, b) => b.id - a.id).map((treasure) => (
           <Treasure
-            key={`treasure --${treasure.id}`}
+            key={`treasure--${treasure.id}`}
             getAllTreasures={getAllTreasures}
             currentUser={familyUserObject}
             treasureObject={treasure}
