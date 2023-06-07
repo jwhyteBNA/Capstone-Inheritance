@@ -23,32 +23,32 @@ The initial build of this application was completed in two weeks, using React an
 ![HTML5](https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Git](https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white) ![JSON Server](https://img.shields.io/badge/JSON_Server%20-%232a2e2a.svg?&style=for-the-badge&logo=JSON&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/VSCode%20-%23007ACC.svg?&style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 ### ERD
-<img src="./src/components/images/Living-Legend-ERD.png">
+<img src="../../images/Living-Legend-ERD.png">
 
 ### Examples
 Login/Registration
-<img src="./src/components/images/Login.gif" width="600">
+<img src="../../images/Login.gif" width="600">
 
 Adding an Heirloom
-<img src="./src/components/images/CreateAnHeirloom.gif" width="600">
+<img src="../../images/CreateAnHeirloom.gif" width="600">
 
 Heir Filters
-<img src="./src/components/images/HeirFilters.gif" width="600">
+<img src="../../images/HeirFilters.gif" width="600">
 
 Adding Memories
-<img src="./src/components/images/Memory.gif" width="600">
+<img src="../../images/Memory.gif" width="600">
 
 Approving Heirloom Requests
-<img src="./src/components/images/ApproveHeirlooms.gif" width="600">
+<img src="../../images/ApproveHeirlooms.gif" width="600">
 
 User Views
-<img src="./src/components/images/UserViews.gif" width="600">
+<img src="../../images/UserViews.gif" width="600">
 
 Mobile-Friendly Navbar
-<img src="./src/components/images/MobileNavBar.gif" width="600">
+<img src="../../images/MobileNavBar.gif" width="600">
 
 User Management
-<img src="./src/components/images/Users.gif" width="600">
+<img src="../../images/Users.gif" width="600">
 
 ### Created by Jessalynn Whyte
 
