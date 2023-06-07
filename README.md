@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# The Living Legend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+__A place to inventory prized possessions and the memories that make them priceless.__
 
-## Available Scripts
+### Why Create This Application?
 
-In the project directory, you can run:
+One part estate planning tool, one part family scrapbook, The Living Legend is designed to help families talk about both the heavy and light of family relationships during the creation of a will or trust. This site is designed to make the difficult process of legacy planning for the future easier by cataloging family heirlooms for the next generation, while creating new memories that families can enjoy in the present.
 
-### `npm start`
+The initial build of this application was completed in two weeks, using React and CSS for styling. My goals were to incorporate full CRUD functionality, engage different user views, and gain a deeper understanding of React Hooks, props, and state. I also wanted to build a fun and functional user interface without using bootstrapped components, and make sure to bring in mobile-friendly elements.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Features
+* Users can register as an Heir User to view heirlooms as well as add new heirlooms or update information about current heirlooms.
+* Users have the ability to filter heirlooms based on their value, whether they have been assigned to the current user, or by searching name or description.
+* Users can request items are assigned to them, and admins can provide approval or denial of requests.
+* Users can add stories and share photos and videos of hierlooms
+* In addition to having access to all the Heir User features, Family Leaders (Admins) can approve requests, change user status to become a Family Leader, or delete user profiles.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Future Features
+* Notably, Heirs can only view their own assignments - they cannot see what heirlooms are earmarked for other users. The next updated will include an Executor status that can be set by Family Leaders, who will have permissions to view all heirloom assignments.
 
-### `npm test`
+### Technologies used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![HTML5](https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Git](https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white) ![JSON Server](https://img.shields.io/badge/JSON_Server%20-%232a2e2a.svg?&style=for-the-badge&logo=JSON&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/VSCode%20-%23007ACC.svg?&style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-### `npm run build`
+### ERD
+<img src="./src/components/images/Living-Legend-ERD.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Examples
+Login/Registration
+<img src="./src/components/images/Login.gif" width="600">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Adding an Heirloom
+<img src="./src/components/images/CreateAnHeirloom.gif" width="600">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Heir Filters
+<img src="./src/components/images/HeirFilters.gif" width="600">
 
-### `npm run eject`
+Adding Memories
+<img src="./src/components/images/Memory.gif" width="600">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Approving Heirloom Requests
+<img src="./src/components/images/ApproveHeirlooms.gif" width="600">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+User Views
+<img src="./src/components/images/UserViews.gif" width="600">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Mobile-Friendly Navbar
+<img src="./src/components/images/MobileNavBar.gif" width="600">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+User Management
+<img src="./src/components/images/Users.gif" width="600">
 
-## Learn More
+### Created by Jessalynn Whyte
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://www.github.com/jwhyteBNA/" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="Jessalynn Whyte GitHub" style="height: auto !important;width: auto !important;" /></a> <a href="https://www.linkedin.com/in/jessalynnwhyte/" target="_blank"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="Jessalynn Whyte LinkedIn" style="height: auto !important;width: auto !important;" /></a>

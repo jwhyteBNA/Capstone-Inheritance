@@ -17,8 +17,6 @@ padding: 10px;
   margin-top: 20px;
 }
 
-
-
 .treasure_filters {
     display: flex;
     justify-content: space-between;
@@ -206,9 +204,10 @@ padding: 10px;
     overflow: hidden;
   }
 
-  /* .treasure__footer{
-to move button to the bottom
-  } */
+  .treasure__footer {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
   
   .treasure img {
     max-width: 100%;

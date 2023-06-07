@@ -67,7 +67,7 @@ export const Register = (props) => {
   };
 
   return (
-    <main className ="login-background">
+    <main className ="login-main">
       <img className="wave" src={waveImage} />
       <div className="login-container">
         <div className="logo-img">
